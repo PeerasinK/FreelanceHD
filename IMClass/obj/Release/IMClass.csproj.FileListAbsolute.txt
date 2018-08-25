@@ -1,0 +1,6 @@
+C:\Users\juiko\Documents\Visual Studio 2017\Projects\IMClass\bin\Release\IMClass.dll
+C:\Users\juiko\Documents\Visual Studio 2017\Projects\IMClass\bin\Release\IMClass.pdb
+C:\Users\juiko\Documents\Visual Studio 2017\Projects\IMClass\obj\Release\IMClass.csprojAssemblyReference.cache
+C:\Users\juiko\Documents\Visual Studio 2017\Projects\IMClass\obj\Release\IMClass.csproj.CoreCompileInputs.cache
+C:\Users\juiko\Documents\Visual Studio 2017\Projects\IMClass\obj\Release\IMClass.dll
+C:\Users\juiko\Documents\Visual Studio 2017\Projects\IMClass\obj\Release\IMClass.pdb

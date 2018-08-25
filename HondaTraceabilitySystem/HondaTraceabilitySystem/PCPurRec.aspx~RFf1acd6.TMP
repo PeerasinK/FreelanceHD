@@ -1,0 +1,32 @@
+﻿<%@ Page Title="Receiving" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PCPurRec.aspx.cs" Inherits="HondaTraceabilitySystem.PCPurRec" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
+    <table >
+        <tr>
+            <td>
+                <asp:Label ID="flblTitle" runat="server" CssClass="TitleLabel" Text="Receiving"
+                    Width="330"></asp:Label>
+            </td>
+        </tr>
+    </table>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br />
+    <div >
+            <h4><asp:Label ID="lblMsg" runat="server" BackColor="Transparent"></asp:Label> </h4>
+		</div>
+
+    <asp:panel id="pnlKey" 
+        style="Z-INDEX: 103; LEFT: 45px; POSITION: absolute; TOP: 5px; width: 725px; height: 30px;" 
+        runat="server">
+				
+			<asp:RadioButtonList ID="rdoTYPE" runat="server" RepeatDirection="Vertical" 
+                style=" LEFT: 8px; POSITION: absolute; TOP: 10px" AutoPostBack="True" OnSelectedIndexChanged="rdoTYPE_SelectedIndexChanged">
+                    <asp:ListItem Value="IMPORT" Selected="True">IMPORT </asp:ListItem> 
+                    <asp:ListItem Value="LOCAL">LOCAL </asp:ListItem>
+            </asp:RadioButtonList>
+
+    </asp:panel>
+
+</asp:Content>

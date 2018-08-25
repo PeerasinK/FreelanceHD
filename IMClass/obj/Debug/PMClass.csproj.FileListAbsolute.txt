@@ -1,0 +1,5 @@
+H:\Newyork-projects\DCS\03_開発\Src\PMClass\bin\Debug\PMClass.dll
+H:\Newyork-projects\DCS\03_開発\Src\PMClass\bin\Debug\PMClass.pdb
+H:\Newyork-projects\DCS\03_開発\Src\PMClass\obj\Debug\ResolveAssemblyReference.cache
+H:\Newyork-projects\DCS\03_開発\Src\PMClass\obj\Debug\PMClass.dll
+H:\Newyork-projects\DCS\03_開発\Src\PMClass\obj\Debug\PMClass.pdb
