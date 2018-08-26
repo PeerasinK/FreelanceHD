@@ -102,10 +102,7 @@ namespace HondaTraceabilitySystem
 
         protected void cmdDisp_Click(object sender, EventArgs e)
         {
-            gdvDetail.DataSource = null;
-            gdvDetail.DataBind();
-            ViewState["gdvDetail"] = null;
-
+            ClearGrid();
             Edit_Screen();
         }
 
@@ -137,6 +134,8 @@ namespace HondaTraceabilitySystem
 
             Message msg = new Message(g_user_id, g_lang);
             AEConnRod SrchItem = new AEConnRod(g_user_id, g_lang);
+            if (!txtSelectDateFrom.Text.Equals("")) SrchItem.condition_DateFrom = DateTime.Parse(txtSelectDateFrom.Text);
+            if (!txtSelectDateTo.Text.Equals("")) SrchItem.condition_DateTo = DateTime.Parse(txtSelectDateTo.Text);
             DataSet ds = SrchItem.GetAEConnRodList();
 
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
@@ -177,6 +176,17 @@ namespace HondaTraceabilitySystem
             {
                 j = gdvDetail.Rows[i].DataItemIndex;
             }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            ClearGrid();
+            Edit_Screen();
+        }
+
+        protected void cmdClear_Click(object sender, EventArgs e)
+        {
+            ClearGrid();
         }
 
         protected void cmdPrint_Click(object sender, EventArgs e)
@@ -364,6 +374,13 @@ namespace HondaTraceabilitySystem
         protected void ddlPROCESS_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ClearGrid()
+        {
+            gdvDetail.DataSource = null;
+            gdvDetail.DataBind();
+            ViewState["gdvDetail"] = null;
         }
     }
 }

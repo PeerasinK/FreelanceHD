@@ -102,10 +102,7 @@ namespace HondaTraceabilitySystem
 
         protected void cmdDisp_Click(object sender, EventArgs e)
         {
-            gdvDetail.DataSource = null;
-            gdvDetail.DataBind();
-            ViewState["gdvDetail"] = null;
-
+            ClearGrid();
             Edit_Screen();
         }
 
@@ -129,19 +126,21 @@ namespace HondaTraceabilitySystem
             //dt.Rows.Add(dr);
 
             // TEST ALL AE
-            DataSet ds1 = new AEBlock().GetAEBlockList();
-            DataSet ds2 = new AEConnRod().GetAEConnRodList();
-            DataSet ds3 = new AECrank().GetAECrankList();
-            DataSet ds4 = new AEHead().GetAEHeadList();
+            //DataSet ds1 = new AEBlock().GetAEBlockList();
+            //DataSet ds2 = new AEConnRod().GetAEConnRodList();
+            //DataSet ds3 = new AECrank().GetAECrankList();
+            //DataSet ds4 = new AEHead().GetAEHeadList();
 
-            var stringArr1 = ds1.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
-            var stringArr2 = ds2.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
-            var stringArr3 = ds3.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
-            var stringArr4 = ds4.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
+            //var stringArr1 = ds1.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
+            //var stringArr2 = ds2.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
+            //var stringArr3 = ds3.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
+            //var stringArr4 = ds4.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
             #endregion
 
             Message msg = new Message(g_user_id, g_lang);
             AEBlock SrchItem = new AEBlock(g_user_id, g_lang);
+            if (!txtSelectDateFrom.Text.Equals("")) SrchItem.condition_DateFrom = DateTime.Parse(txtSelectDateFrom.Text);
+            if (!txtSelectDateTo.Text.Equals("")) SrchItem.condition_DateTo = DateTime.Parse(txtSelectDateTo.Text);
             DataSet ds = SrchItem.GetAEBlockList();
 
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
@@ -182,6 +181,17 @@ namespace HondaTraceabilitySystem
             {
                 j = gdvDetail.Rows[i].DataItemIndex;
             }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            ClearGrid();
+            Edit_Screen();
+        }
+
+        protected void cmdClear_Click(object sender, EventArgs e)
+        {
+            ClearGrid();
         }
 
         protected void cmdPrint_Click(object sender, EventArgs e)
@@ -369,6 +379,13 @@ namespace HondaTraceabilitySystem
         protected void ddlPROCESS_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ClearGrid()
+        {
+            gdvDetail.DataSource = null;
+            gdvDetail.DataBind();
+            ViewState["gdvDetail"] = null;
         }
     }
 }

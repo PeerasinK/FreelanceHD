@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AeOnProdBlockRpt.aspx.cs" Inherits="HondaTraceabilitySystem.AeOnProdBlockRpt" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <!DOCTYPE html>
 
@@ -113,8 +114,11 @@
                 <td style="width: 180px;">
                     <table width="100%" border="0">
                         <tr>
-                            <td width="90" valign="bottom">
+                            <td style="padding-left: 5px" width="90" valign="bottom">
                                 <asp:Button ID="cmdDisp" runat="server" CssClass="btn btn-primary" Text="DISPLAY" OnClick="cmdDisp_Click"></asp:Button>
+                            </td>
+                            <td style="padding-left: 5px" width="90" valign="bottom">
+                                <asp:Button ID="Button1" runat="server" CssClass="btn btn-warning" Text="CLEAR" OnClick="cmdClear_Click"></asp:Button>
                             </td>
                             <td style="padding-left: 5px" width="90" valign="bottom">
                                 <asp:Button ID="cmdPrint"  runat="server" CssClass="btn btn-success" Text="PRINT" OnClick="cmdPrint_Click"></asp:Button>
@@ -143,6 +147,31 @@
                             Width="330px">Online Block Summary Report</asp:Label>
                 </td>
             </tr>
+            </table>
+        </div>
+        <div>
+            <%--<asp:ScriptManager runat="server"></asp:ScriptManager>--%>
+            <table>
+                <tr>
+                    <td>**</td>
+                    <td>Select Date From:</td>
+                    <td>
+                        <asp:TextBox ID="txtSelectDateFrom" runat="server" Width="90px"></asp:TextBox>
+                        <asp:CalendarExtender ID="CalendarSelectDateFrom" runat="server" PopupButtonID="imgPopupDateForm" TargetControlID="txtSelectDateFrom" Format="yyyy/MM/dd" />
+                    </td>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>Select Date To :</td>
+                    <td>
+                        <asp:TextBox ID="txtSelectDateTo" runat="server" Width="90px"></asp:TextBox>
+                        <asp:CalendarExtender ID="CalendarSelectDateTo" runat="server" PopupButtonID="imgPopupDateTo" TargetControlID="txtSelectDateTo" Format="yyyy/MM/dd" />
+                    </td>
+                    <td>
+                        <asp:Button ID="btnSearch" runat="server" Text="Search" Width="55px" Font-Bold="true" OnClick="btnSearch_Click"  />
+                    </td>
+
+                </tr>
             </table>
         </div>
         <div class="container body-content">
