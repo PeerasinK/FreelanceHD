@@ -177,19 +177,11 @@
                     onpageindexchanging="gdvDetail_PageIndexChanging"
                     AutoGenerateSelectButton="False" >
                     <Columns>
-                        <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="chkSEL" runat="server" />
-                                </ItemTemplate>
-                                <ItemStyle Width="24px" />
-                                <HeaderStyle Width="24px" />
-                            </asp:TemplateField> 
-
                         <asp:TemplateField HeaderText="DateFromPLC">                                
                             <ItemTemplate>
                                 <asp:TextBox ID="lbl_DateFromPLC" runat="server" CssClass="form-control" 
                                     Text='<%# Bind("DateFromPLC") %>' ToolTip='<%# Bind("DateFromPLC") %>' 
-                                    ReadOnly="True" TabIndex="-1"></asp:TextBox>
+                                    ReadOnly="True" TabIndex="-1" Width="180"></asp:TextBox>
                             </ItemTemplate>
                             <ItemStyle width="100px"/>
                             <HeaderStyle width="100px"/>
@@ -198,7 +190,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="lbl_Result_2DBlockNo" runat="server" CssClass="form-control" 
                                     ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_2DBlockNo") %>' 
-                                    ToolTip='<%# Bind("Result_2DBlockNo") %>'></asp:TextBox>
+                                    ToolTip='<%# Bind("Result_2DBlockNo") %>' Width="200"></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle width="200px" />
                             <ItemStyle width="200px" />
@@ -207,7 +199,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="lbl_Result_2DConnRod2" runat="server" CssClass="form-control" 
                                     ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_2DConnRod2") %>' 
-                                    ToolTip='<%# Bind("Result_2DConnRod2") %>'></asp:TextBox>
+                                    ToolTip='<%# Bind("Result_2DConnRod2") %>' Width="200"></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle width="200px" />
                             <ItemStyle width="200px" />
@@ -216,7 +208,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="lbl_Result_2DConnRod3" runat="server" CssClass="form-control" 
                                     ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_2DConnRod3") %>' 
-                                    ToolTip='<%# Bind("Result_2DConnRod3") %>'></asp:TextBox>
+                                    ToolTip='<%# Bind("Result_2DConnRod3") %>' Width="200"></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle width="200px" />
                             <ItemStyle width="200px" />
@@ -225,7 +217,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="lbl_Result_2DConnRod4" runat="server" CssClass="form-control" 
                                     ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_2DConnRod4") %>' 
-                                    ToolTip='<%# Bind("Result_2DConnRod4") %>'></asp:TextBox>
+                                    ToolTip='<%# Bind("Result_2DConnRod4") %>' Width="200"></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle width="200px" />
                             <ItemStyle width="200px" />
@@ -234,7 +226,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="lbl_Result_EngineNo" runat="server" CssClass="form-control" 
                                     ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_EngineNo") %>' 
-                                    ToolTip='<%# Bind("Result_EngineNo") %>'></asp:TextBox>
+                                    ToolTip='<%# Bind("Result_EngineNo") %>' Width="150"></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle width="200px" />
                             <ItemStyle width="200px" />
@@ -243,7 +235,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="lbl_Result_YMTO" runat="server" CssClass="form-control" 
                                     ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_YMTO") %>' 
-                                    ToolTip='<%# Bind("Result_YMTO") %>'></asp:TextBox>
+                                    ToolTip='<%# Bind("Result_YMTO") %>' Width="150"></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle width="200px" />
                             <ItemStyle width="200px" />
@@ -252,7 +244,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="lbl_CreateDate" runat="server" CssClass="form-control" 
                                     ReadOnly="true" TabIndex="-1" Text='<%# Bind("CreateDate") %>' 
-                                    ToolTip='<%# Bind("CreateDate") %>'></asp:TextBox>
+                                    ToolTip='<%# Bind("CreateDate") %>' Width="200"></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle width="200px" />
                             <ItemStyle width="200px" />
@@ -261,7 +253,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="lbl_Flag" runat="server" CssClass="form-control" 
                                     ReadOnly="true" TabIndex="-1" Text='<%# Bind("Flag") %>' 
-                                    ToolTip='<%# Bind("Flag") %>'></asp:TextBox>
+                                    ToolTip='<%# Bind("Flag") %>' Width="100"></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle width="200px" />
                             <ItemStyle width="200px" />

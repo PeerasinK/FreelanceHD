@@ -152,7 +152,7 @@ namespace HondaTraceabilitySystem
                 for (int i = 0; i < gdvDetail.Rows.Count; i++)
                 {
                     j = gdvDetail.Rows[i].DataItemIndex;
-                    dt.Rows[j]["SELECT"] = com.BoolToInt(((CheckBox)gdvDetail.Rows[i].FindControl("chkSEL")).Checked);
+                    //dt.Rows[j]["SELECT"] = com.BoolToInt(((CheckBox)gdvDetail.Rows[i].FindControl("chkSEL")).Checked);
                 }
                 ViewState["gdvDetail"] = dt;
             }
