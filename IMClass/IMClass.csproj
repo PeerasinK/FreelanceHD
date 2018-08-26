@@ -82,6 +82,7 @@
     <Compile Include="HTSimulation.cs" />
     <Compile Include="Infomation.cs" />
     <Compile Include="Inv.cs" />
+    <Compile Include="AEBlock.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemSetup.cs" />
     <Compile Include="ItemWS.cs" />
