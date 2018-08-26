@@ -64,6 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AEConnRod.cs" />
+    <Compile Include="AEHead.cs" />
+    <Compile Include="AECrank.cs" />
     <Compile Include="Calendar.cs" />
     <Compile Include="ComConst.cs" />
     <Compile Include="ComDB.cs" />
