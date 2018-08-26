@@ -82,7 +82,10 @@ namespace IMClass
 
             strSQL = new StringBuilder();
             //--- sql
-            strSQL.Append("SELECT TOP 2000 *");
+            strSQL.Append("SELECT TOP 2000 ");
+            strSQL.Append("[DateFromPLC],           [Result_2DBlockNo],     [Result_2DConnRod1],        [Result_2DConnRod2],        [Result_2DConnRod3], ");
+            strSQL.Append("[Result_2DConnRod4],     [Result_EngineNo],      [Result_YMTO],              [CreateDate],               [Flag] ");
+
             if (_db_type == "ORACLE")
             {
                 strSQL.Append(" FROM PLC_AE_ASSY_CONNROD C ");

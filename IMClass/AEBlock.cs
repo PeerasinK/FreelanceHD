@@ -82,7 +82,18 @@ namespace IMClass
 
             strSQL = new StringBuilder();
             //--- sql
-            strSQL.Append("SELECT TOP 2000 *");
+            strSQL.Append("SELECT TOP 2000 ");
+            strSQL.Append("[MC_WorkingDate],    [CylinderNo],       [LineCode],         [PartNo],               [Status], ");
+            strSQL.Append("[CA_Model],          [CA_DieNo],         [CA_SozaiYear],     [CA_SozaiMonth],        [CA_SozaiDay], ");
+            strSQL.Append("[CA_Mc],             [CA_SozaiNo],       [ToGunshin],        [MarkP],                [MarkR], ");
+            strSQL.Append("[MarkGR],            [BCAP_Lot],         [C1],               [C2],                   [C3], ");
+            strSQL.Append("[C4],                [C5],               [B1],               [B2],                   [B3], ");
+            strSQL.Append("[B4],                [NGProcessCode],    [NGOutDate],        [NGInDate],             [NGCode], ");
+            strSQL.Append("[NGDetail],          [RepairOK],         [OFFDate],          [LotNo],                [StockInLocation], ");
+            strSQL.Append("[LastWHLocation],    [StockOutDate],     [Reject],           [Location],             [N1_100_OUT], ");
+            strSQL.Append("[N1_100_IN],         [N5_OUT],           [N5_IN],            [SPECIAL_OUT],          [SPECIAL_IN], ");
+            strSQL.Append("[OTHER_OUT],         [OTHER_IN],         [MaxUpdateDate],    [Flag] ");
+
             if (_db_type == "ORACLE")
             {
                 strSQL.Append(" FROM B1_BLOCK_DATA_INTERFACE B ");

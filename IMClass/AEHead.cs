@@ -82,7 +82,10 @@ namespace IMClass
 
             strSQL = new StringBuilder();
             //--- sql
-            strSQL.Append("SELECT TOP 2000 *");
+            strSQL.Append("SELECT TOP 2000 ");
+            strSQL.Append("[AE_Assy_Head_No],      [Model],            [Part_No],           [Engine_No],");
+            strSQL.Append("[Head_Offline_LotNo],   [Create_Date],      [Create_By],         [Shift] ");
+
             if (_db_type == "ORACLE")
             {
                 strSQL.Append(" FROM AE_ASSY_HEAD_SUB H ");
