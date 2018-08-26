@@ -111,55 +111,44 @@ namespace HondaTraceabilitySystem
 
         protected void Edit_Screen()
         {
-            // Testing
-            DataTable dt = new DataTable();
 
-            dt.Columns.Add(new DataColumn("MODEL"));
-            dt.Columns.Add(new DataColumn("Part_No"));
+            #region Testing
+            //DataTable dt = new DataTable();
 
-            DataRow dr = dt.NewRow();
-            dr["MODEL"] = "NP4 1.6";
-            dr["Part_No"] = "12207P8A-A001H1";
+            //dt.Columns.Add(new DataColumn("MC_WorkingDate"));
+            //dt.Columns.Add(new DataColumn("CylinderNo"));
+            //dt.Columns.Add(new DataColumn("LineCode"));
+            //dt.Columns.Add(new DataColumn("PartNo"));
 
-            dt.Rows.Add(dr);
+            //DataRow dr = dt.NewRow();
+            //dr["MC_WorkingDate"] = "NP4 1.6";
+            //dr["CylinderNo"] = "12207P8A-A001H1";
+            //dr["LineCode"] = "XXXXX";
+            //dr["PartNo"] = "XXXXX";
 
-            ViewState["gdvDetail"] = dt;
-            Edit_Grid();
-            // Actual Codes
-            //ComLibrary com = new ComLibrary();
-            //Message msg = new Message(g_user_id, g_lang);
+            //dt.Rows.Add(dr);
 
-            //chkALL_SEL.Checked = false;
+            // TEST ALL AE
+            DataSet ds1 = new AEBlock().GetAEBlockList();
+            DataSet ds2 = new AEConnRod().GetAEConnRodList();
+            DataSet ds3 = new AECrank().GetAECrankList();
+            DataSet ds4 = new AEHead().GetAEHeadList();
 
-            //// 製造指示情報を検索
-            //WIPJo jo = new WIPJo(g_user_id, g_lang);
-            //jo.process_cd = ddlPROCESS.Text;
-            //jo.chkflag = chkSTART.Checked ? 1 : 0;  // 着手済含む　2015.09.25
+            var stringArr1 = ds1.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
+            var stringArr2 = ds2.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
+            var stringArr3 = ds3.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
+            var stringArr4 = ds4.Tables[0].Rows[0].ItemArray.Select(x => x.ToString()).ToArray();
+            #endregion
 
-            //DataSet ds = jo.Get_ONList();
+            Message msg = new Message(g_user_id, g_lang);
+            AEBlock SrchItem = new AEBlock(g_user_id, g_lang);
+            DataSet ds = SrchItem.GetAEBlockList();
 
-            //if (ds == null)
-            //{
-            //    lblMsg.Text = jo.strErr;
-            //    lblMsg.ForeColor = Color.Red;
-            //    return;
-            //}
-
-            //if (ds.Tables[0].Rows.Count == 0)
-            //{
-            //    lblMsg.Text = msg.GetMessage("DATA_NOT_EXIST_ERR");
-            //    lblMsg.ForeColor = Color.Red;
-            //    return;
-            //}
-            //else
-            //{
-            //    // 画面編集
-
-            //    gdvDetail.PageIndex = 0;
-            //    ViewState["gdvDetail"] = ds.Tables[0];
-            //    Edit_grid();
-
-            //}
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                ViewState["gdvDetail"] = ds.Tables[0];
+                Edit_Grid();
+            }
         }
 
         protected void SaveGridData()
@@ -176,7 +165,7 @@ namespace HondaTraceabilitySystem
                 for (int i = 0; i < gdvDetail.Rows.Count; i++)
                 {
                     j = gdvDetail.Rows[i].DataItemIndex;
-                    dt.Rows[j]["SELECT"] = com.BoolToInt(((CheckBox)gdvDetail.Rows[i].FindControl("chkSEL")).Checked);
+                    //dt.Rows[j]["SELECT"] = com.BoolToInt(((CheckBox)gdvDetail.Rows[i].FindControl("chkSEL")).Checked);
                 }
                 ViewState["gdvDetail"] = dt;
             }
@@ -187,17 +176,11 @@ namespace HondaTraceabilitySystem
             int j;
             ComLibrary com = new ComLibrary();
             DataTable dt = (DataTable)ViewState["gdvDetail"];
-            if (dt.Columns["SELECT"] == null)
-            {
-                dt.Columns.Add("SELECT");
-            }
             gdvDetail.DataSource = dt;
             gdvDetail.DataBind();
             for (int i = 0; i < gdvDetail.Rows.Count; i++)
             {
                 j = gdvDetail.Rows[i].DataItemIndex;
-                if (dt.Rows[j]["SELECT"].ToString() != "")
-                    ((CheckBox)gdvDetail.Rows[i].FindControl("chkSEL")).Checked = com.IntToBool(com.StringToInt(dt.Rows[j]["SELECT"].ToString()));
             }
         }
 

@@ -163,12 +163,8 @@
             </asp:panel>
 
             <asp:panel id="pnlDetail" 
-                    style="Z-INDEX: 102; LEFT: 7px; POSITION: absolute; TOP: 80px; height: 300px; width: 1000px;" 
+                    style="Z-INDEX: 102; LEFT: 7px; POSITION: absolute; TOP: 0px; height: 300px; width: 1000px;" 
                     runat="server">
-
-                <%--<asp:CheckBox ID="chkALL_SEL" runat="server" style="LEFT: 12px; POSITION: absolute; TOP: 56px; width:127px;" 
-                        CssClass="fi_mtitle" Text="All Selected" AutoPostBack="True" oncheckedchanged="chkALL_SEL_CheckedChanged" 
-                        />--%>
 
                 <asp:GridView ID="gdvDetail" runat="server"
                     AutoGenerateColumns="False" BorderColor="#999999"
@@ -177,28 +173,38 @@
                     onpageindexchanging="gdvDetail_PageIndexChanging"
                     AutoGenerateSelectButton="False" >
                     <Columns>
-                        <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="chkSEL" runat="server" />
-                                </ItemTemplate>
-                                <ItemStyle Width="24px" />
-                                <HeaderStyle Width="24px" />
-                            </asp:TemplateField> 
-
-                        <asp:TemplateField HeaderText="Model">                                
+                        <asp:TemplateField HeaderText="MC_WorkingDate">                                
                             <ItemTemplate>
-                                <asp:TextBox ID="lblONLINE_NO" runat="server" CssClass="form-control" 
-                                    Text='<%# Bind("MODEL") %>' ToolTip='<%# Bind("MODEL") %>' 
+                                <asp:TextBox ID="lbl_MC_WorkingDate" runat="server" CssClass="form-control" 
+                                    Text='<%# Bind("MC_WorkingDate") %>' ToolTip='<%# Bind("MC_WorkingDate") %>' 
                                     ReadOnly="True" TabIndex="-1"></asp:TextBox>
                             </ItemTemplate>
                             <ItemStyle width="100px"/>
                             <HeaderStyle width="100px"/>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Part No">
+                        <asp:TemplateField HeaderText="CylinderNo">
                             <ItemTemplate>
-                                <asp:TextBox ID="lblPART_NO" runat="server" CssClass="form-control" 
-                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("Part_No") %>' 
-                                    ToolTip='<%# Bind("Part_No") %>'></asp:TextBox>
+                                <asp:TextBox ID="lbl_CylinderNo" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("CylinderNo") %>' 
+                                    ToolTip='<%# Bind("CylinderNo") %>'></asp:TextBox>
+                            </ItemTemplate>
+                            <HeaderStyle width="200px" />
+                            <ItemStyle width="200px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="LineCode">
+                            <ItemTemplate>
+                                <asp:TextBox ID="lbl_LineCode" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("LineCode") %>' 
+                                    ToolTip='<%# Bind("LineCode") %>'></asp:TextBox>
+                            </ItemTemplate>
+                            <HeaderStyle width="200px" />
+                            <ItemStyle width="200px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="PartNo">
+                            <ItemTemplate>
+                                <asp:TextBox ID="lbl_PartNo" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("PartNo") %>' 
+                                    ToolTip='<%# Bind("PartNo") %>'></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle width="200px" />
                             <ItemStyle width="200px" />

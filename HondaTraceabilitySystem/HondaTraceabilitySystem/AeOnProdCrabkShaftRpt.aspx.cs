@@ -111,55 +111,31 @@ namespace HondaTraceabilitySystem
 
         protected void Edit_Screen()
         {
-            // Testing
-            DataTable dt = new DataTable();
+            #region Testing
+            //DataTable dt = new DataTable();
 
-            dt.Columns.Add(new DataColumn("MODEL"));
-            dt.Columns.Add(new DataColumn("Part_No"));
+            //dt.Columns.Add(new DataColumn("Model"));
+            //dt.Columns.Add(new DataColumn("Part_No"));
 
-            DataRow dr = dt.NewRow();
-            dr["MODEL"] = "NP4 1.6";
-            dr["Part_No"] = "12207P8A-A001H1";
+            //DataRow dr = dt.NewRow();
+            //dr["Model"] = "NP4 1.6";
+            //dr["Part_No"] = "12207P8A-A001H1";
 
-            dt.Rows.Add(dr);
+            //dt.Rows.Add(dr);
 
-            ViewState["gdvDetail"] = dt;
-            Edit_Grid();
-            // Actual Codes
-            //ComLibrary com = new ComLibrary();
-            //Message msg = new Message(g_user_id, g_lang);
+            //ViewState["gdvDetail"] = dt;
+            //Edit_Grid();
+            #endregion
 
-            //chkALL_SEL.Checked = false;
+            Message msg = new Message(g_user_id, g_lang);
+            AECrank SrchItem = new AECrank(g_user_id, g_lang);
+            DataSet ds = SrchItem.GetAECrankList();
 
-            //// 製造指示情報を検索
-            //WIPJo jo = new WIPJo(g_user_id, g_lang);
-            //jo.process_cd = ddlPROCESS.Text;
-            //jo.chkflag = chkSTART.Checked ? 1 : 0;  // 着手済含む　2015.09.25
-
-            //DataSet ds = jo.Get_ONList();
-
-            //if (ds == null)
-            //{
-            //    lblMsg.Text = jo.strErr;
-            //    lblMsg.ForeColor = Color.Red;
-            //    return;
-            //}
-
-            //if (ds.Tables[0].Rows.Count == 0)
-            //{
-            //    lblMsg.Text = msg.GetMessage("DATA_NOT_EXIST_ERR");
-            //    lblMsg.ForeColor = Color.Red;
-            //    return;
-            //}
-            //else
-            //{
-            //    // 画面編集
-
-            //    gdvDetail.PageIndex = 0;
-            //    ViewState["gdvDetail"] = ds.Tables[0];
-            //    Edit_grid();
-
-            //}
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                ViewState["gdvDetail"] = ds.Tables[0];
+                Edit_Grid();
+            }
         }
 
         protected void SaveGridData()
@@ -168,15 +144,10 @@ namespace HondaTraceabilitySystem
             {
                 ComLibrary com = new ComLibrary();
                 DataTable dt = (DataTable)(ViewState["gdvDetail"]);
-                if (dt.Columns["SELECT"] == null)
-                {
-                    dt.Columns.Add("SELECT");
-                }
                 int j;
                 for (int i = 0; i < gdvDetail.Rows.Count; i++)
                 {
                     j = gdvDetail.Rows[i].DataItemIndex;
-                    dt.Rows[j]["SELECT"] = com.BoolToInt(((CheckBox)gdvDetail.Rows[i].FindControl("chkSEL")).Checked);
                 }
                 ViewState["gdvDetail"] = dt;
             }
@@ -187,17 +158,11 @@ namespace HondaTraceabilitySystem
             int j;
             ComLibrary com = new ComLibrary();
             DataTable dt = (DataTable)ViewState["gdvDetail"];
-            if (dt.Columns["SELECT"] == null)
-            {
-                dt.Columns.Add("SELECT");
-            }
             gdvDetail.DataSource = dt;
             gdvDetail.DataBind();
             for (int i = 0; i < gdvDetail.Rows.Count; i++)
             {
                 j = gdvDetail.Rows[i].DataItemIndex;
-                if (dt.Rows[j]["SELECT"].ToString() != "")
-                    ((CheckBox)gdvDetail.Rows[i].FindControl("chkSEL")).Checked = com.IntToBool(com.StringToInt(dt.Rows[j]["SELECT"].ToString()));
             }
         }
 

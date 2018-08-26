@@ -140,7 +140,7 @@
             <tr>
                 <td style="width: 200px; height: 45px;" valign="top" colspan="2">
                     <asp:Label ID="flblTitle" runat="server" Style="height: 23px;" CssClass="TitleLabel"
-                            Width="330px">Online Conn Rod Summary Report</asp:Label>
+                            Width="500px">Online Conn Rod Summary Report</asp:Label>
                 </td>
             </tr>
             </table>
@@ -163,7 +163,7 @@
             </asp:panel>
 
             <asp:panel id="pnlDetail" 
-                    style="Z-INDEX: 102; LEFT: 7px; POSITION: absolute; TOP: 80px; height: 300px; width: 1000px;" 
+                    style="Z-INDEX: 102; LEFT: 7px; POSITION: absolute; TOP: 0px; height: 300px; width: 1000px;" 
                     runat="server">
 
                 <%--<asp:CheckBox ID="chkALL_SEL" runat="server" style="LEFT: 12px; POSITION: absolute; TOP: 56px; width:127px;" 
@@ -185,20 +185,83 @@
                                 <HeaderStyle Width="24px" />
                             </asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="Model">                                
+                        <asp:TemplateField HeaderText="DateFromPLC">                                
                             <ItemTemplate>
-                                <asp:TextBox ID="lblONLINE_NO" runat="server" CssClass="form-control" 
-                                    Text='<%# Bind("MODEL") %>' ToolTip='<%# Bind("MODEL") %>' 
+                                <asp:TextBox ID="lbl_DateFromPLC" runat="server" CssClass="form-control" 
+                                    Text='<%# Bind("DateFromPLC") %>' ToolTip='<%# Bind("DateFromPLC") %>' 
                                     ReadOnly="True" TabIndex="-1"></asp:TextBox>
                             </ItemTemplate>
                             <ItemStyle width="100px"/>
                             <HeaderStyle width="100px"/>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Part No">
+                        <asp:TemplateField HeaderText="Result_2DBlockNo">
                             <ItemTemplate>
-                                <asp:TextBox ID="lblPART_NO" runat="server" CssClass="form-control" 
-                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("Part_No") %>' 
-                                    ToolTip='<%# Bind("Part_No") %>'></asp:TextBox>
+                                <asp:TextBox ID="lbl_Result_2DBlockNo" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_2DBlockNo") %>' 
+                                    ToolTip='<%# Bind("Result_2DBlockNo") %>'></asp:TextBox>
+                            </ItemTemplate>
+                            <HeaderStyle width="200px" />
+                            <ItemStyle width="200px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Result_2DConnRod2">
+                            <ItemTemplate>
+                                <asp:TextBox ID="lbl_Result_2DConnRod2" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_2DConnRod2") %>' 
+                                    ToolTip='<%# Bind("Result_2DConnRod2") %>'></asp:TextBox>
+                            </ItemTemplate>
+                            <HeaderStyle width="200px" />
+                            <ItemStyle width="200px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Result_2DConnRod3">
+                            <ItemTemplate>
+                                <asp:TextBox ID="lbl_Result_2DConnRod3" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_2DConnRod3") %>' 
+                                    ToolTip='<%# Bind("Result_2DConnRod3") %>'></asp:TextBox>
+                            </ItemTemplate>
+                            <HeaderStyle width="200px" />
+                            <ItemStyle width="200px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Result_2DConnRod4">
+                            <ItemTemplate>
+                                <asp:TextBox ID="lbl_Result_2DConnRod4" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_2DConnRod4") %>' 
+                                    ToolTip='<%# Bind("Result_2DConnRod4") %>'></asp:TextBox>
+                            </ItemTemplate>
+                            <HeaderStyle width="200px" />
+                            <ItemStyle width="200px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Result_EngineNo">
+                            <ItemTemplate>
+                                <asp:TextBox ID="lbl_Result_EngineNo" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_EngineNo") %>' 
+                                    ToolTip='<%# Bind("Result_EngineNo") %>'></asp:TextBox>
+                            </ItemTemplate>
+                            <HeaderStyle width="200px" />
+                            <ItemStyle width="200px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Result_YMTO">
+                            <ItemTemplate>
+                                <asp:TextBox ID="lbl_Result_YMTO" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("Result_YMTO") %>' 
+                                    ToolTip='<%# Bind("Result_YMTO") %>'></asp:TextBox>
+                            </ItemTemplate>
+                            <HeaderStyle width="200px" />
+                            <ItemStyle width="200px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="CreateDate">
+                            <ItemTemplate>
+                                <asp:TextBox ID="lbl_CreateDate" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("CreateDate") %>' 
+                                    ToolTip='<%# Bind("CreateDate") %>'></asp:TextBox>
+                            </ItemTemplate>
+                            <HeaderStyle width="200px" />
+                            <ItemStyle width="200px" />
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Flag">
+                            <ItemTemplate>
+                                <asp:TextBox ID="lbl_Flag" runat="server" CssClass="form-control" 
+                                    ReadOnly="true" TabIndex="-1" Text='<%# Bind("Flag") %>' 
+                                    ToolTip='<%# Bind("Flag") %>'></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle width="200px" />
                             <ItemStyle width="200px" />
