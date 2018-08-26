@@ -38,6 +38,8 @@ namespace IMClass
 
         protected string _db_type = "";
         protected int _lang = 0;
+        protected DateTime? _condition_DateFrom;
+        protected DateTime? _condition_DateTo;
 
         protected DateTime _entry_date;
         protected DateTime _chg_date;
@@ -55,6 +57,9 @@ namespace IMClass
         #endregion
 
         #region : プロパティ
+
+        public DateTime? condition_DateFrom { get { return _condition_DateFrom; } set { _condition_DateFrom = value; } }
+        public DateTime? condition_DateTo { get { return _condition_DateTo; } set { _condition_DateTo = value; } }
 
         public string chg_pgm { get { return _chg_pgm; } set { _chg_pgm = value; } }
         public string chg_user_id { get { return _chg_user_id; } set { _chg_user_id = value; } }
@@ -83,19 +88,23 @@ namespace IMClass
             strSQL = new StringBuilder();
             //--- sql
             strSQL.Append("SELECT TOP 2000 ");
-            strSQL.Append("[DateFromPLC],           [Result_2DBlockNo],     [Result_2DConnRod1],        [Result_2DConnRod2],        [Result_2DConnRod3], ");
-            strSQL.Append("[Result_2DConnRod4],     [Result_EngineNo],      [Result_YMTO],              [CreateDate],               [Flag] ");
+            strSQL.Append("C.[DateFromPLC],           C.[Result_2DBlockNo],     C.[Result_2DConnRod1],        C.[Result_2DConnRod2],        C.[Result_2DConnRod3], ");
+            strSQL.Append("C.[Result_2DConnRod4],     C.[Result_EngineNo],      C.[Result_YMTO],              C.[CreateDate],               C.[Flag] ");
 
             if (_db_type == "ORACLE")
             {
                 strSQL.Append(" FROM PLC_AE_ASSY_CONNROD C ");
                 strSQL.Append(" WHERE 1=1 ");
+                if (_condition_DateFrom.HasValue) strSQL.Append(" AND CAST(C.DateFromPLC AS DATE) >= CAST('" + _condition_DateFrom.Value + "' AS DATE) ");
+                if (_condition_DateTo.HasValue) strSQL.Append(" AND CAST(C.DateFromPLC AS DATE) <= CAST('" + _condition_DateTo.Value + "' AS DATE) ");
                 db.DbParametersClear();
             }
             else
             {
                 strSQL.Append(" FROM PLC_AE_ASSY_CONNROD C ");
                 strSQL.Append(" WHERE 1=1 ");
+                if (_condition_DateFrom.HasValue) strSQL.Append(" AND CAST(C.DateFromPLC AS DATE) >= CAST('" + _condition_DateFrom.Value + "' AS DATE) ");
+                if (_condition_DateTo.HasValue) strSQL.Append(" AND CAST(C.DateFromPLC AS DATE) <= CAST('" + _condition_DateTo.Value + "' AS DATE) ");
                 db.DbParametersClear();
             }
 

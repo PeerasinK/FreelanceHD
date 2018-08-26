@@ -38,6 +38,8 @@ namespace IMClass
 
         protected string _db_type = "";
         protected int _lang = 0;
+        protected DateTime? _condition_DateFrom;
+        protected DateTime? _condition_DateTo;
 
         protected DateTime _entry_date;
         protected DateTime _chg_date;
@@ -55,6 +57,9 @@ namespace IMClass
         #endregion
 
         #region : プロパティ
+
+        public DateTime? condition_DateFrom { get { return _condition_DateFrom; } set { _condition_DateFrom = value; } }
+        public DateTime? condition_DateTo { get { return _condition_DateTo; } set { _condition_DateTo = value; } }
 
         public string chg_pgm { get { return _chg_pgm; } set { _chg_pgm = value; } }
         public string chg_user_id { get { return _chg_user_id; } set { _chg_user_id = value; } }
@@ -83,27 +88,31 @@ namespace IMClass
             strSQL = new StringBuilder();
             //--- sql
             strSQL.Append("SELECT TOP 2000 ");
-            strSQL.Append("[MC_WorkingDate],    [CylinderNo],       [LineCode],         [PartNo],               [Status], ");
-            strSQL.Append("[CA_Model],          [CA_DieNo],         [CA_SozaiYear],     [CA_SozaiMonth],        [CA_SozaiDay], ");
-            strSQL.Append("[CA_Mc],             [CA_SozaiNo],       [ToGunshin],        [MarkP],                [MarkR], ");
-            strSQL.Append("[MarkGR],            [BCAP_Lot],         [C1],               [C2],                   [C3], ");
-            strSQL.Append("[C4],                [C5],               [B1],               [B2],                   [B3], ");
-            strSQL.Append("[B4],                [NGProcessCode],    [NGOutDate],        [NGInDate],             [NGCode], ");
-            strSQL.Append("[NGDetail],          [RepairOK],         [OFFDate],          [LotNo],                [StockInLocation], ");
-            strSQL.Append("[LastWHLocation],    [StockOutDate],     [Reject],           [Location],             [N1_100_OUT], ");
-            strSQL.Append("[N1_100_IN],         [N5_OUT],           [N5_IN],            [SPECIAL_OUT],          [SPECIAL_IN], ");
-            strSQL.Append("[OTHER_OUT],         [OTHER_IN],         [MaxUpdateDate],    [Flag] ");
+            strSQL.Append("B.[MC_WorkingDate],    B.[CylinderNo],       B.[LineCode],         B.[PartNo],               B.[Status], ");
+            strSQL.Append("B.[CA_Model],          B.[CA_DieNo],         B.[CA_SozaiYear],     B.[CA_SozaiMonth],        B.[CA_SozaiDay], ");
+            strSQL.Append("B.[CA_Mc],             B.[CA_SozaiNo],       B.[ToGunshin],        B.[MarkP],                B.[MarkR], ");
+            strSQL.Append("B.[MarkGR],            B.[BCAP_Lot],         B.[C1],               B.[C2],                   B.[C3], ");
+            strSQL.Append("B.[C4],                B.[C5],               B.[B1],               B.[B2],                   B.[B3], ");
+            strSQL.Append("B.[B4],                B.[NGProcessCode],    B.[NGOutDate],        B.[NGInDate],             B.[NGCode], ");
+            strSQL.Append("B.[NGDetail],          B.[RepairOK],         B.[OFFDate],          B.[LotNo],                B.[StockInLocation], ");
+            strSQL.Append("B.[LastWHLocation],    B.[StockOutDate],     B.[Reject],           B.[Location],             B.[N1_100_OUT], ");
+            strSQL.Append("B.[N1_100_IN],         B.[N5_OUT],           B.[N5_IN],            B.[SPECIAL_OUT],          B.[SPECIAL_IN], ");
+            strSQL.Append("B.[OTHER_OUT],         B.[OTHER_IN],         B.[MaxUpdateDate],    B.[Flag] ");
 
             if (_db_type == "ORACLE")
             {
                 strSQL.Append(" FROM B1_BLOCK_DATA_INTERFACE B ");
                 strSQL.Append(" WHERE 1=1 ");
+                if (_condition_DateFrom.HasValue) strSQL.Append(" AND CAST(B.NGInDate AS DATE) >= CAST('" + _condition_DateFrom.Value + "' AS DATE) ");
+                if (_condition_DateTo.HasValue) strSQL.Append(" AND CAST(B.NGInDate AS DATE) <= CAST('" + _condition_DateTo.Value + "' AS DATE) ");
                 db.DbParametersClear();
             }
             else
             {
                 strSQL.Append(" FROM B1_BLOCK_DATA_INTERFACE B ");
                 strSQL.Append(" WHERE 1=1 ");
+                if(_condition_DateFrom.HasValue) strSQL.Append(" AND CAST(B.NGInDate AS DATE) >= CAST('" + _condition_DateFrom.Value + "' AS DATE) ");
+                if (_condition_DateTo.HasValue) strSQL.Append(" AND CAST(B.NGInDate AS DATE) <= CAST('" + _condition_DateTo.Value + "' AS DATE) ");
                 db.DbParametersClear();
             }
 

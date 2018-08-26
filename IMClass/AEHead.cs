@@ -38,6 +38,8 @@ namespace IMClass
 
         protected string _db_type = "";
         protected int _lang = 0;
+        protected DateTime? _condition_DateFrom;
+        protected DateTime? _condition_DateTo;
 
         protected DateTime _entry_date;
         protected DateTime _chg_date;
@@ -55,6 +57,9 @@ namespace IMClass
         #endregion
 
         #region : プロパティ
+
+        public DateTime? condition_DateFrom { get { return _condition_DateFrom; } set { _condition_DateFrom = value; } }
+        public DateTime? condition_DateTo { get { return _condition_DateTo; } set { _condition_DateTo = value; } }
 
         public string chg_pgm { get { return _chg_pgm; } set { _chg_pgm = value; } }
         public string chg_user_id { get { return _chg_user_id; } set { _chg_user_id = value; } }
@@ -83,19 +88,23 @@ namespace IMClass
             strSQL = new StringBuilder();
             //--- sql
             strSQL.Append("SELECT TOP 2000 ");
-            strSQL.Append("[AE_Assy_Head_No],      [Model],            [Part_No],           [Engine_No],");
-            strSQL.Append("[Head_Offline_LotNo],   [Create_Date],      [Create_By],         [Shift] ");
+            strSQL.Append("H.[AE_Assy_Head_No],      H.[Model],            H.[Part_No],         H.[Engine_No],");
+            strSQL.Append("H.[Head_Offline_LotNo],   H.[Create_Date],      H.[Create_By],       H.[Shift] ");
 
             if (_db_type == "ORACLE")
             {
                 strSQL.Append(" FROM AE_ASSY_HEAD_SUB H ");
                 strSQL.Append(" WHERE 1=1 ");
+                if (_condition_DateFrom.HasValue) strSQL.Append(" AND CAST(H.Create_Date AS DATE) >= CAST('" + _condition_DateFrom.Value + "' AS DATE) ");
+                if (_condition_DateTo.HasValue) strSQL.Append(" AND CAST(H.Create_Date AS DATE) <= CAST('" + _condition_DateTo.Value + "' AS DATE) ");
                 db.DbParametersClear();
             }
             else
             {
                 strSQL.Append(" FROM AE_ASSY_HEAD_SUB H ");
                 strSQL.Append(" WHERE 1=1 ");
+                if (_condition_DateFrom.HasValue) strSQL.Append(" AND CAST(H.Create_Date AS DATE) >= CAST('" + _condition_DateFrom.Value + "' AS DATE) ");
+                if (_condition_DateTo.HasValue) strSQL.Append(" AND CAST(H.Create_Date AS DATE) <= CAST('" + _condition_DateTo.Value + "' AS DATE) ");
                 db.DbParametersClear();
             }
 
